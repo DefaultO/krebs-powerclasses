@@ -1,0 +1,843 @@
+{
+ "gameTime": 1000,
+ "rooms": [
+  {
+   "name": "W1N1",
+   "terrain": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+   "objects": [
+    {
+     "_id": "o0000000001",
+     "type": "controller",
+     "x": 5,
+     "y": 5,
+     "level": 8,
+     "user": "a1",
+     "progress": 0,
+     "downgradeTime": 101000,
+     "safeModeAvailable": 0,
+     "isPowerEnabled": true
+    },
+    {
+     "_id": "o0000000002",
+     "type": "powerSpawn",
+     "x": 20,
+     "y": 20,
+     "user": "a1",
+     "hits": 5000,
+     "hitsMax": 5000,
+     "store": {
+      "energy": 0,
+      "power": 0
+     },
+     "storeCapacityResource": {
+      "energy": 5000,
+      "power": 100
+     }
+    },
+    {
+     "_id": "o0000000003",
+     "type": "storage",
+     "x": 24,
+     "y": 21,
+     "user": "a1",
+     "hits": 10000,
+     "hitsMax": 10000,
+     "store": {
+      "energy": 100000
+     },
+     "storeCapacity": 1000000
+    },
+    {
+     "_id": "o0000000004",
+     "type": "creep",
+     "x": 26,
+     "y": 20,
+     "name": "f1",
+     "user": "a1",
+     "body": [
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 50,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000005",
+     "type": "creep",
+     "x": 27,
+     "y": 21,
+     "name": "d1",
+     "user": "a1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 1100,
+     "hitsMax": 1100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000006",
+     "type": "creep",
+     "x": 28,
+     "y": 21,
+     "name": "h1",
+     "user": "a1",
+     "body": [
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 600,
+     "hitsMax": 600,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000007",
+     "type": "creep",
+     "x": 29,
+     "y": 21,
+     "name": "h2",
+     "user": "a1",
+     "body": [
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 800,
+     "hitsMax": 800,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000008",
+     "type": "creep",
+     "x": 27,
+     "y": 24,
+     "name": "wk",
+     "user": "a1",
+     "body": [
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 700,
+     "hitsMax": 700,
+     "store": {},
+     "storeCapacity": 200,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000009",
+     "type": "source",
+     "x": 28,
+     "y": 25,
+     "energy": 3000,
+     "energyCapacity": 3000,
+     "ticksToRegeneration": 300
+    },
+    {
+     "_id": "o000000000a",
+     "type": "creep",
+     "x": 29,
+     "y": 18,
+     "name": "ar",
+     "user": "a1",
+     "body": [
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o000000000b",
+     "type": "creep",
+     "x": 33,
+     "y": 18,
+     "name": "dm",
+     "user": "a1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 600,
+     "hitsMax": 600,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o000000000c",
+     "type": "creep",
+     "x": 40,
+     "y": 40,
+     "name": "far",
+     "user": "a1",
+     "body": [
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 100,
+     "hitsMax": 100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o000000000d",
+     "type": "creep",
+     "x": 23,
+     "y": 22,
+     "name": "old",
+     "user": "a1",
+     "body": [
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 200,
+     "hitsMax": 200,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1500,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o000000000e",
+     "type": "creep",
+     "x": 24,
+     "y": 19,
+     "name": "vic",
+     "user": "a1",
+     "body": [
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 200,
+     "hitsMax": 200,
+     "store": {
+      "energy": 50
+     },
+     "storeCapacity": 50,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o000000000f",
+     "type": "creep",
+     "x": 26,
+     "y": 19,
+     "name": "lt",
+     "user": "a1",
+     "body": [
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 200,
+     "hitsMax": 200,
+     "store": {
+      "energy": 50
+     },
+     "storeCapacity": 50,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000010",
+     "type": "creep",
+     "x": 27,
+     "y": 18,
+     "name": "looter",
+     "user": "a1",
+     "body": [
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 100,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000011",
+     "type": "source",
+     "x": 26,
+     "y": 29,
+     "energy": 3000,
+     "energyCapacity": 3000,
+     "ticksToRegeneration": 300
+    },
+    {
+     "_id": "o0000000012",
+     "type": "mineral",
+     "x": 24,
+     "y": 31,
+     "mineralType": "H",
+     "mineralAmount": 50000,
+     "density": 3
+    },
+    {
+     "_id": "o0000000013",
+     "type": "extractor",
+     "x": 24,
+     "y": 31,
+     "user": "a1",
+     "hits": 500,
+     "hitsMax": 500,
+     "cooldown": 0
+    },
+    {
+     "_id": "o0000000014",
+     "type": "deposit",
+     "x": 24,
+     "y": 29,
+     "depositType": "silicon",
+     "harvested": 0,
+     "decayTime": 51000
+    },
+    {
+     "_id": "o0000000015",
+     "type": "creep",
+     "x": 26,
+     "y": 31,
+     "name": "h3",
+     "user": "a1",
+     "body": [
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 1100,
+     "hitsMax": 1100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000016",
+     "type": "creep",
+     "x": 35,
+     "y": 30,
+     "name": "rc",
+     "user": "a1",
+     "body": [
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 500,
+     "hitsMax": 500,
+     "store": {},
+     "storeCapacity": 200,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000017",
+     "type": "creep",
+     "x": 45,
+     "y": 45,
+     "name": "dist",
+     "user": "a1",
+     "body": [
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 200,
+     "hitsMax": 200,
+     "store": {},
+     "storeCapacity": 50,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o0000000018",
+     "type": "rampart",
+     "x": 27,
+     "y": 33,
+     "user": "a1",
+     "hits": 1000,
+     "hitsMax": 300000000,
+     "nextDecayTime": 101000,
+     "isPublic": false
+    },
+    {
+     "_id": "o0000000019",
+     "type": "constructedWall",
+     "x": 23,
+     "y": 33,
+     "hits": 5000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "o000000001a",
+     "type": "constructedWall",
+     "x": 30,
+     "y": 30,
+     "hits": 100000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "o000000001b",
+     "type": "rampart",
+     "x": 26,
+     "y": 30,
+     "user": "b1",
+     "hits": 10000,
+     "hitsMax": 300000000,
+     "nextDecayTime": 101000,
+     "isPublic": false
+    },
+    {
+     "_id": "o000000001c",
+     "type": "creep",
+     "x": 26,
+     "y": 30,
+     "name": "bx",
+     "user": "b1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 2100,
+     "hitsMax": 2100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "o000000001d",
+     "type": "creep",
+     "x": 27,
+     "y": 28,
+     "name": "kx",
+     "user": "b1",
+     "body": [
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 100,
+     "hitsMax": 100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 2400,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    }
+   ]
+  }
+ ],
+ "players": [
+  {
+   "username": "Alice",
+   "id": "a1",
+   "code": "a",
+   "cpu": 300,
+   "bucket": 10000,
+   "gcl": 1000000000,
+   "power": 100000000
+  },
+  {
+   "username": "Bob",
+   "id": "b1",
+   "code": "b",
+   "cpu": 100,
+   "bucket": 10000,
+   "gcl": 1000000,
+   "power": 0
+  }
+ ]
+}

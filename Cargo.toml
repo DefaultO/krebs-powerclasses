@@ -1,0 +1,11 @@
+[package]
+name = "mod-powerclasses"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+description = "The Commander and the Executor: the power creep classes Screeps planned besides the Operator"
+
+[dependencies]
+backend = { path = "../../crates/backend" }
+engine = { path = "../../crates/engine" }
+util = { path = "../../crates/util" }
