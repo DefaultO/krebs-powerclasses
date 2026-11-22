@@ -10,7 +10,7 @@ git clone --recursive https://github.com/DefaultO/krebs.git
 
 Screeps planned three power creep classes and shipped one, the Operator. This mod adds the other two, the **Commander** and
 the **Executor**, with the powers the official [power planner](https://screeps.com/power-planner/) gives them. The game
-client already carries their sprites, so they look like themselves in the room view.
+client already carries their sprites and most of their power icons, so they look like themselves in it.
 
 Turn it on with `"mods": ["powerclasses"]` in `krebs.json`, or `krebs serve --mods powerclasses`. Nothing enables it by
 default, and with it off nothing about the game changes.
@@ -92,10 +92,23 @@ The planner describes each power in a sentence. Where that left a choice, the mo
 
 ## What the client shows
 
-The room view draws Commanders and Executors with their own sprites. It shows no power icon for the new powers, because
-the client's renderer only has a table for the Operator's: the mod logs them as `actionLog.classPower` instead of
-`actionLog.power`, since an id the renderer does not know stops it from drawing the room. The client's own power creep
-screens know only the Operator, so the new classes come from scripts.
+The room view draws Commanders and Executors with the renderer's own sprites, at the renderer's own sizes. Each power
+shows the way an Operator's does: its icon where it lands, and in the side panel under Powers, with its level ring and
+cooldown bar, and under Effects while it lasts. 18 of the icons are the client's own, which it ships for these classes; the
+other 7 (Mass Heal, Foreman, Resurrect, Dash, Regenerate, Harvest Deposit, Nuke) are drawn for this mod in the same style,
+in `icons/`.
+
+`client.js` does this inside the client, which runs it each time it connects (Krebs's `Registry::client_js`):
+
+* The renderer only knows the Operator's powers, and an id it does not know stops it from drawing the room, so the server
+  logs the new powers as `actionLog.classPower`. Just before the renderer reads a tick, client.js turns each back into
+  `actionLog.power`, under an id that finds the icon.
+* The side panel names a power by its `PWR_*` constant and loads `PWR_<name>.svg` from the client's files. client.js adds
+  the new powers to the client's constants (`PWR_*`, `POWER_INFO`, `POWER_CLASS`), and points the panel at the client's
+  Commander and Executor icons, or this mod's.
+
+The client's Power Creeps page reads the same constants, so it lists the new classes' powers too. It has not been tried
+with them: create and upgrade the new classes from scripts.
 
 ## How it is built
 
@@ -104,6 +117,8 @@ screens know only the Operator, so the new classes come from scripts.
 * `src/powers.rs`: the `classPower` intent (a custom intent type, `intent_types`), which `usePower` sends for the new
   powers.
 * `src/effects.rs`: what the powers leave on creeps and power creeps, and the hooks that act on it.
+* `client.js` and `icons/`: the game client's side, sent to it with the server's data.
+* `test/` and `demo/`: the end-to-end test and the showcase, each a scenario with its bots.
 
 Core lets a mod add power classes and powers (`ProcessorHooks::power_classes`, `powers`) and gives it a hook between the
 intents and the tick loop (`pre_tick`). The mod registers no object tick and no post-object hook, so the tick loop's quiet
@@ -118,5 +133,25 @@ krebs bench --scenario scenario.json --mods powerclasses --console --ticks 150 -
 ```
 
 `make-scenario.cjs` writes `scenario.json` again after a change to the room.
+
+## Showcase
+
+`demo/` is a room to watch in the game client: one power creep for each of the 25 powers, each at a station of its own
+with what its power needs, framed and named in the room. Your creeps walk, work, get hurt and die there, and Bob's hit
+them, so the healing and shielding powers have work and the hostile ones have targets. Kill and Resurrect share one
+creep, Lazarus, who dies and comes back. Those two come round once in hundreds of ticks, and Nuke once (its power creep
+dies), so all three wait until the world runs at watching speed and go off about half a minute later. From
+`mods/powerclasses/demo`:
+
+```
+krebs bench --scenario showcase.json --mods powerclasses --ticks 160 --warmup 0 --save world
+krebs serve --data world --mods powerclasses --tick-rate 1000
+```
+
+The first line sets the room up: it creates the power creeps, levels each until its own power is at level 5 (Harvest
+Energy stays at 1, which takes just what its source gives), spawns them and walks them to their stations. The room is
+`player`'s, the name `krebs serve` signs the game client in as on this PC, so the client shows it as yours, with the
+bot's labels and its console, which counts each power's uses. `make-demo.cjs` writes `showcase.json` and the bots'
+`layout.js` again after a change to the room.
 
 The code is under the MIT licence, see `LICENSE`.

@@ -200,6 +200,75 @@ pub const POWERS: [Power; 25] = [
 /// Mass heal by distance 1, 2 and 3.
 pub const MASS_HEAL_POWER: [f64; 3] = [2500.0, 1000.0, 250.0];
 
+/// The texture the game client draws where each power lands, in `POWERS` order: the client's own for the 18 powers its
+/// renderer has an icon for (github.com/screeps/renderer, `metadata/images`, the same art as the power planner's), and
+/// `NEW_ICONS` for the 7 the planner has only an empty one for.
+pub const ICONS: [&str; 25] = [
+    "encourage",
+    "exhaust",
+    "defend",
+    "summon",
+    "renew",
+    "powerclasses-mass-heal",
+    "disable",
+    "powerclasses-foreman",
+    "powerclasses-resurrect",
+    "sight",
+    "berserk",
+    "powerclasses-dash",
+    "powerclasses-regenerate",
+    "harvest-energy",
+    "harvest-mineral",
+    "powerclasses-harvest-deposit",
+    "remote-transfer",
+    "mass-repair",
+    "punch",
+    "demolish",
+    "reflect",
+    "reinforce",
+    "snipe",
+    "kill",
+    "powerclasses-nuke",
+];
+
+/// Icons drawn for this mod in the style of the client's, for `renderer.resources`.
+pub const NEW_ICONS: [(&str, &str); 7] = [
+    ("powerclasses-mass-heal", include_str!("../icons/mass-heal.svg")),
+    ("powerclasses-foreman", include_str!("../icons/foreman.svg")),
+    ("powerclasses-resurrect", include_str!("../icons/resurrect.svg")),
+    ("powerclasses-dash", include_str!("../icons/dash.svg")),
+    ("powerclasses-regenerate", include_str!("../icons/regenerate.svg")),
+    ("powerclasses-harvest-deposit", include_str!("../icons/harvest-deposit.svg")),
+    ("powerclasses-nuke", include_str!("../icons/nuke.svg")),
+];
+
+/// `ICONS` for client.js: `{"<power>": "<texture>", …}`.
+pub fn icons_json() -> String {
+    let pairs: Vec<String> = POWERS.iter().zip(ICONS).map(|(p, icon)| format!("\"{}\":\"{icon}\"", p.id)).collect();
+    format!("{{{}}}", pairs.join(","))
+}
+
+/// One of `NEW_ICONS` as the client loads it, a data URI.
+pub fn icon_uri(svg: &str) -> String {
+    format!("data:image/svg+xml;base64,{}", ::util::base64::encode(svg.as_bytes()))
+}
+
+/// The icon the client's side panel shows for each power, for client.js: `{"<power>": "<url>", …}`. The client ships the
+/// Commander's and the Executor's icons for its Power Creeps page, in the panel's style (the panel's Operator icons are the
+/// same files as that page's `app2/assets/powers/operator/`), so the 18 the client has come from
+/// `app2/assets/powers/<class>/`; the other 7 are `NEW_ICONS`.
+pub fn panel_icons_json() -> String {
+    let pairs: Vec<String> = POWERS
+        .iter()
+        .zip(ICONS)
+        .map(|(p, icon)| match NEW_ICONS.iter().find(|(name, _)| *name == icon) {
+            Some((_, svg)) => format!("\"{}\":\"{}\"", p.id, icon_uri(svg)),
+            None => format!("\"{}\":\"app2/assets/powers/{}/{icon}.svg\"", p.id, p.class),
+        })
+        .collect();
+    format!("{{{}}}", pairs.join(","))
+}
+
 /// The power numbered `id`, if this mod adds it.
 pub fn power(id: u32) -> Option<&'static Power> {
     POWERS.get(id.checked_sub(PWR_ENCOURAGE)? as usize)
@@ -291,6 +360,43 @@ mod tests {
     fn targets_have_a_range_and_the_rest_do_not() {
         for p in &POWERS {
             assert_eq!(p.aim == Aim::Target, p.range.is_some(), "{}", p.name);
+        }
+    }
+
+    /// Every power has an icon: one of the client's (its renderer-metadata.js lists them all as textures) or one of this
+    /// mod's, each an SVG in the client icons' frame.
+    #[test]
+    fn every_power_has_an_icon() {
+        const CLIENT: &[&str] = &[
+            "berserk", "defend", "demolish", "disable", "encourage", "exhaust", "harvest-energy", "harvest-mineral", "kill", "mass-repair",
+            "punch", "reflect", "reinforce", "remote-transfer", "renew", "sight", "snipe", "summon",
+        ];
+        for icon in ICONS {
+            let ours = NEW_ICONS.iter().find(|(name, _)| *name == icon);
+            assert!(CLIENT.contains(&icon) || ours.is_some(), "{icon}");
+            if let Some((_, svg)) = ours {
+                assert!(svg.starts_with("<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32.73 32.73\">") && svg.trim_end().ends_with("</svg>"), "{icon}");
+            }
+        }
+        assert_eq!(NEW_ICONS.iter().filter(|(name, _)| ICONS.contains(name)).count(), NEW_ICONS.len());
+        let json = util::json::Json::parse(&icons_json()).unwrap();
+        assert_eq!(json.get("38").and_then(util::json::Json::as_str), Some("punch"));
+        assert_eq!(json.get("44").and_then(util::json::Json::as_str), Some("powerclasses-nuke"));
+
+        // the side panel's: what the client has in app2/assets/powers/<class>/, else ours
+        const PAGE: &[(&str, &[&str])] = &[
+            (COMMANDER, &["berserk", "defend", "disable", "encourage", "exhaust", "renew", "sight", "summon"]),
+            (EXECUTOR, &["demolish", "harvest-energy", "harvest-mineral", "kill", "mass-repair", "punch", "reflect", "reinforce", "remote-transfer", "snipe"]),
+        ];
+        let panel = util::json::Json::parse(&panel_icons_json()).unwrap();
+        for (p, icon) in POWERS.iter().zip(ICONS) {
+            let url = panel.get(&p.id.to_string()).and_then(util::json::Json::as_str).unwrap();
+            let shipped = PAGE.iter().any(|(class, names)| *class == p.class && names.contains(&icon));
+            if shipped {
+                assert_eq!(url, format!("app2/assets/powers/{}/{icon}.svg", p.class), "{}", p.name);
+            } else {
+                assert!(url.starts_with("data:image/svg+xml;base64,") && NEW_ICONS.iter().any(|(name, _)| *name == icon), "{}", p.name);
+            }
         }
     }
 

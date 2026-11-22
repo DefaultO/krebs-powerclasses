@@ -1,8 +1,10 @@
-// Writes scenario.json for `krebs bench --scenario`: one plain room W1N1 at RCL 8 with power enabled, player A (a1)
-// who runs a/main.js, player B (b1) who stands still.
+// Writes scenario.json for `krebs bench --scenario`: one room W1N1 at RCL 8 with power enabled, plain inside a wall on its
+// edge, player A (a1) who runs a/main.js, player B (b1) who stands still. The game client's room view waits for terrain
+// with a wall or swamp in it, so the edge is wall, and for a badge for everyone who owns something in the room.
 const fs = require('fs');
 const path = require('path');
 const G = 1000;
+const terrain = Array.from({length: 2500}, (_, i) => (i % 50 == 0 || i % 50 == 49 || i < 50 || i >= 2450 ? '1' : '0')).join('');
 let id = 0;
 const o = (type, x, y, more) => Object.assign({_id: 'o' + (++id).toString(16).padStart(10, '0'), type, x, y}, more);
 const creep = (name, user, x, y, parts, more = {}) => {
@@ -50,10 +52,12 @@ const objects = [
 
 const scenario = {
     gameTime: G,
-    rooms: [{name: 'W1N1', terrain: '0'.repeat(2500), objects}],
+    rooms: [{name: 'W1N1', terrain, objects}],
     players: [
-        {username: 'Alice', id: 'a1', code: 'a', cpu: 300, bucket: 10000, gcl: 1e9, power: 1e8},
-        {username: 'Bob', id: 'b1', code: 'b', cpu: 100, bucket: 10000, gcl: 1e6, power: 0},
+        {username: 'Alice', id: 'a1', code: 'a', cpu: 300, bucket: 10000, gcl: 1e9, power: 1e8,
+            badge: {type: 9, color1: '#f4e383', color2: '#cc3d3e', color3: '#2b2b2b', param: 0, flip: false}},
+        {username: 'Bob', id: 'b1', code: 'b', cpu: 100, bucket: 10000, gcl: 1e6, power: 0,
+            badge: {type: 3, color1: '#3d7acc', color2: '#1b1b1b', color3: '#9fc5f4', param: 0, flip: false}},
     ],
 };
 fs.writeFileSync(path.join(__dirname, 'scenario.json'), JSON.stringify(scenario, null, 1));

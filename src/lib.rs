@@ -41,6 +41,13 @@ impl Mod for PowerClasses {
         p.pre_tick.push(effects::pre_tick);
         p.room_end.push(effects::room_end);
         r.js_game.push(game_js());
+        // the game client: the powers' icons where they land and in the side panel, shown as it shows an Operator's
+        // (client.js), the 7 new ones among its textures
+        r.client_js.push(client_js());
+        for (name, svg) in table::NEW_ICONS {
+            let path: &'static str = Box::leak(format!("renderer.resources.{name}").into_boxed_str());
+            r.server_data.push((path, ::util::json::Json::Str(table::icon_uri(svg))));
+        }
     }
 }
 
@@ -48,6 +55,21 @@ impl Mod for PowerClasses {
 fn game_js() -> &'static str {
     static JS: OnceLock<String> = OnceLock::new();
     JS.get_or_init(|| format!("{}\n{}", table::js_tables(), include_str!("../game.js")))
+}
+
+/// client.js after the tables it reads: the icons for the room and for the side panel, and the powers for the client's
+/// constants.
+fn client_js() -> &'static str {
+    static JS: OnceLock<String> = OnceLock::new();
+    JS.get_or_init(|| {
+        format!(
+            "var ICONS = {};\nvar PANEL_ICONS = {};\n{}\n{}",
+            table::icons_json(),
+            table::panel_icons_json(),
+            table::js_tables(),
+            include_str!("../client.js")
+        )
+    })
 }
 
 #[cfg(test)]
@@ -66,6 +88,12 @@ mod tests {
         // the tick loop's quiet path stays on: no object ticks, no post-object hook
         assert!(p.object_ticks.is_empty() && p.post_object.is_empty());
         assert_eq!(r.js_game.len(), 1);
+        assert!(r.client_js.len() == 1 && r.client_js[0].starts_with("var ICONS = {\"20\":\"encourage\""));
+        assert!(r.client_js[0].contains("\nvar PANEL_ICONS = {\"20\":\"app2/assets/powers/commander/encourage.svg\"")
+            && r.client_js[0].contains("\nvar POWERS = [\n"));
+        assert_eq!(r.server_data.len(), 7);
+        assert!(r.server_data.iter().all(|(k, v)| k.starts_with("renderer.resources.powerclasses-")
+            && v.as_str().is_some_and(|s| s.starts_with("data:image/svg+xml;base64,"))));
         assert!(r.js_game[0].starts_with("var CLASSES = "));
     }
 }

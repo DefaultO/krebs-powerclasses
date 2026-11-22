@@ -1,0 +1,1507 @@
+{
+ "gameTime": 1000,
+ "rooms": [
+  {
+   "name": "W1N1",
+   "terrain": "1111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000001100000000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111",
+   "objects": [
+    {
+     "_id": "s0000000001",
+     "type": "creep",
+     "x": 2,
+     "y": 7,
+     "name": "Slowpoke",
+     "user": "p1",
+     "body": [
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 500,
+     "hitsMax": 500,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000002",
+     "type": "creep",
+     "x": 10,
+     "y": 7,
+     "name": "Sprinter",
+     "user": "p1",
+     "body": [
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 200,
+     "hitsMax": 200,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000003",
+     "type": "creep",
+     "x": 21,
+     "y": 7,
+     "name": "Guard",
+     "user": "p1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 1100,
+     "hitsMax": 1100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000004",
+     "type": "creep",
+     "x": 20,
+     "y": 7,
+     "name": "Guard Medic",
+     "user": "p1",
+     "body": [
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 400,
+     "hitsMax": 400,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000005",
+     "type": "creep",
+     "x": 21,
+     "y": 8,
+     "name": "Brute",
+     "user": "b1",
+     "body": [
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 200,
+     "hitsMax": 200,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000006",
+     "type": "creep",
+     "x": 32,
+     "y": 9,
+     "name": "Wanderer",
+     "user": "p1",
+     "body": [
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 100,
+     "hitsMax": 100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000007",
+     "type": "factory",
+     "x": 37,
+     "y": 4,
+     "user": "p1",
+     "hits": 1000,
+     "hitsMax": 1000,
+     "cooldown": 0,
+     "store": {
+      "energy": 50000
+     },
+     "storeCapacity": 50000
+    },
+    {
+     "_id": "s0000000008",
+     "type": "creep",
+     "x": 37,
+     "y": 8,
+     "name": "Elder",
+     "user": "p1",
+     "body": [
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 5000,
+     "hitsMax": 5000,
+     "store": {},
+     "storeCapacity": 1250,
+     "fatigue": 0,
+     "ageTime": 2100,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000009",
+     "type": "creep",
+     "x": 44,
+     "y": 5,
+     "name": "Patient 1",
+     "user": "p1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 1100,
+     "hitsMax": 1100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000000a",
+     "type": "creep",
+     "x": 46,
+     "y": 5,
+     "name": "Patient 2",
+     "user": "p1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 1100,
+     "hitsMax": 1100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000000b",
+     "type": "creep",
+     "x": 44,
+     "y": 7,
+     "name": "Patient 3",
+     "user": "p1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 1100,
+     "hitsMax": 1100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000000c",
+     "type": "creep",
+     "x": 46,
+     "y": 7,
+     "name": "Patient 4",
+     "user": "p1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 1100,
+     "hitsMax": 1100,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000000d",
+     "type": "creep",
+     "x": 45,
+     "y": 9,
+     "name": "Archer",
+     "user": "b1",
+     "body": [
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000000e",
+     "type": "constructedWall",
+     "x": 5,
+     "y": 17,
+     "hits": 100000000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s000000000f",
+     "type": "creep",
+     "x": 5,
+     "y": 16,
+     "name": "Rioter",
+     "user": "b1",
+     "body": [
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000010",
+     "type": "source",
+     "x": 13,
+     "y": 18,
+     "energy": 3000,
+     "energyCapacity": 3000,
+     "ticksToRegeneration": 300
+    },
+    {
+     "_id": "s0000000011",
+     "type": "controller",
+     "x": 16,
+     "y": 16,
+     "level": 8,
+     "user": "p1",
+     "progress": 0,
+     "downgradeTime": 1001000,
+     "safeModeAvailable": 0,
+     "isPowerEnabled": true
+    },
+    {
+     "_id": "s0000000012",
+     "type": "creep",
+     "x": 13,
+     "y": 17,
+     "name": "Worker",
+     "user": "p1",
+     "body": [
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 700,
+     "hitsMax": 700,
+     "store": {},
+     "storeCapacity": 100,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000013",
+     "type": "creep",
+     "x": 21,
+     "y": 16,
+     "name": "Lazarus",
+     "user": "p1",
+     "body": [
+      {
+       "type": "work",
+       "hits": 100
+      },
+      {
+       "type": "carry",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 50,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000014",
+     "type": "constructedWall",
+     "x": 31,
+     "y": 16,
+     "hits": 100000000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s0000000015",
+     "type": "creep",
+     "x": 27,
+     "y": 16,
+     "name": "Spotter",
+     "user": "p1",
+     "body": [
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000016",
+     "type": "constructedWall",
+     "x": 37,
+     "y": 17,
+     "hits": 100000000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s0000000017",
+     "type": "creep",
+     "x": 37,
+     "y": 16,
+     "name": "Brawler",
+     "user": "p1",
+     "body": [
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000018",
+     "type": "creep",
+     "x": 13,
+     "y": 27,
+     "name": "Sniper",
+     "user": "b1",
+     "body": [
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "ranged_attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 400,
+     "hitsMax": 400,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s0000000019",
+     "type": "powerSpawn",
+     "x": 25,
+     "y": 24,
+     "user": "p1",
+     "hits": 5000,
+     "hitsMax": 5000,
+     "store": {
+      "energy": 0,
+      "power": 0
+     },
+     "storeCapacityResource": {
+      "energy": 5000,
+      "power": 100
+     }
+    },
+    {
+     "_id": "s000000001a",
+     "type": "creep",
+     "x": 37,
+     "y": 25,
+     "name": "Brute 2",
+     "user": "b1",
+     "body": [
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 200,
+     "hitsMax": 200,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000001b",
+     "type": "creep",
+     "x": 38,
+     "y": 26,
+     "name": "Brute 2 Medic",
+     "user": "b1",
+     "body": [
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 300,
+     "hitsMax": 300,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000001c",
+     "type": "creep",
+     "x": 36,
+     "y": 24,
+     "name": "Reflect Medic",
+     "user": "p1",
+     "body": [
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 400,
+     "hitsMax": 400,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000001d",
+     "type": "creep",
+     "x": 45,
+     "y": 25,
+     "name": "Brute 3",
+     "user": "b1",
+     "body": [
+      {
+       "type": "attack",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 200,
+     "hitsMax": 200,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000001e",
+     "type": "creep",
+     "x": 44,
+     "y": 24,
+     "name": "Reinforce Medic",
+     "user": "p1",
+     "body": [
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 400,
+     "hitsMax": 400,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    },
+    {
+     "_id": "s000000001f",
+     "type": "source",
+     "x": 5,
+     "y": 34,
+     "energy": 3000,
+     "energyCapacity": 3000,
+     "ticksToRegeneration": 300
+    },
+    {
+     "_id": "s0000000020",
+     "type": "tower",
+     "x": 5,
+     "y": 32,
+     "user": "p1",
+     "hits": 3000,
+     "hitsMax": 3000,
+     "store": {
+      "energy": 0
+     },
+     "storeCapacityResource": {
+      "energy": 1000
+     }
+    },
+    {
+     "_id": "s0000000021",
+     "type": "constructedWall",
+     "x": 7,
+     "y": 35,
+     "hits": 1000000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s0000000022",
+     "type": "mineral",
+     "x": 13,
+     "y": 34,
+     "mineralType": "H",
+     "mineralAmount": 1000000,
+     "density": 3
+    },
+    {
+     "_id": "s0000000023",
+     "type": "extractor",
+     "x": 13,
+     "y": 34,
+     "user": "p1",
+     "hits": 500,
+     "hitsMax": 500,
+     "cooldown": 0
+    },
+    {
+     "_id": "s0000000024",
+     "type": "deposit",
+     "x": 21,
+     "y": 34,
+     "depositType": "silicon",
+     "harvested": 0,
+     "decayTime": 1001000
+    },
+    {
+     "_id": "s0000000025",
+     "type": "storage",
+     "x": 26,
+     "y": 33,
+     "user": "p1",
+     "hits": 10000,
+     "hitsMax": 10000,
+     "store": {
+      "energy": 500000
+     },
+     "storeCapacity": 1000000
+    },
+    {
+     "_id": "s0000000026",
+     "type": "tower",
+     "x": 32,
+     "y": 33,
+     "user": "p1",
+     "hits": 3000,
+     "hitsMax": 3000,
+     "store": {
+      "energy": 0
+     },
+     "storeCapacityResource": {
+      "energy": 1000
+     }
+    },
+    {
+     "_id": "s0000000027",
+     "type": "constructedWall",
+     "x": 32,
+     "y": 35,
+     "hits": 1000000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s0000000028",
+     "type": "terminal",
+     "x": 37,
+     "y": 32,
+     "user": "p1",
+     "hits": 3000,
+     "hitsMax": 3000,
+     "store": {
+      "energy": 300000
+     },
+     "storeCapacity": 300000
+    },
+    {
+     "_id": "s0000000029",
+     "type": "constructedWall",
+     "x": 35,
+     "y": 31,
+     "hits": 10000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s000000002a",
+     "type": "constructedWall",
+     "x": 39,
+     "y": 31,
+     "hits": 10000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s000000002b",
+     "type": "constructedWall",
+     "x": 35,
+     "y": 35,
+     "hits": 10000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s000000002c",
+     "type": "constructedWall",
+     "x": 39,
+     "y": 35,
+     "hits": 10000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s000000002d",
+     "type": "constructedWall",
+     "x": 45,
+     "y": 34,
+     "hits": 100000000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s000000002e",
+     "type": "constructedWall",
+     "x": 16,
+     "y": 42,
+     "hits": 100000000,
+     "hitsMax": 300000000
+    },
+    {
+     "_id": "s000000002f",
+     "type": "rampart",
+     "x": 21,
+     "y": 44,
+     "user": "b1",
+     "hits": 10000000,
+     "hitsMax": 300000000,
+     "nextDecayTime": 1001000,
+     "isPublic": false
+    },
+    {
+     "_id": "s0000000030",
+     "type": "creep",
+     "x": 21,
+     "y": 44,
+     "name": "Bunker",
+     "user": "b1",
+     "body": [
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "tough",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "heal",
+       "hits": 100
+      },
+      {
+       "type": "move",
+       "hits": 100
+      }
+     ],
+     "hits": 3600,
+     "hitsMax": 3600,
+     "store": {},
+     "storeCapacity": 0,
+     "fatigue": 0,
+     "ageTime": 1001000,
+     "spawning": false,
+     "notifyWhenAttacked": false
+    }
+   ]
+  }
+ ],
+ "players": [
+  {
+   "username": "player",
+   "id": "p1",
+   "code": "player",
+   "cpu": 500,
+   "bucket": 10000,
+   "gcl": 1000000000,
+   "power": 1000000000,
+   "badge": {
+    "type": 9,
+    "color1": "#f4e383",
+    "color2": "#cc3d3e",
+    "color3": "#2b2b2b",
+    "param": 0,
+    "flip": false
+   }
+  },
+  {
+   "username": "Bob",
+   "id": "b1",
+   "code": "bob",
+   "cpu": 100,
+   "bucket": 10000,
+   "gcl": 1000000,
+   "power": 0,
+   "badge": {
+    "type": 3,
+    "color1": "#3d7acc",
+    "color2": "#1b1b1b",
+    "color3": "#9fc5f4",
+    "param": 0,
+    "flip": false
+   }
+  }
+ ]
+}
