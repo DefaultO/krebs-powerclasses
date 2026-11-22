@@ -1,7 +1,9 @@
 // mods/powerclasses in the game client: each Commander and Executor power shown as the client shows an Operator's, by the
-// very code that shows those: its icon where it lands, and its icon under Powers and Effects in the side panel. ICONS (power ->
+// very code that shows those: its beam and icon where it lands, the red flare over whatever its effect is on while it
+// lasts, and its icon under Powers and Effects in the side panel. ICONS (power ->
 // texture), PANEL_ICONS (power -> image), CLASSES and POWERS are table.rs's, written ahead of this file. Runs every time the
-// client connects (backend::mods::Registry::client_js), so it changes nothing a second time.
+// client connects (backend::mods::Registry::client_js), so a second run in the same page only puts its renderer hook in
+// place of the first's and changes nothing else again.
 
 // Where a power lands. The renderer draws a power from a power creep's `actionLog.power` (powerInfluence.js in
 // github.com/screeps/renderer): the icon its table INFLUENCE_TEXTURE gives the power's id, on the square the power was used
@@ -17,28 +19,41 @@ function installRoom() {
     if(!renderer) {
         return false;
     }
-    if(renderer.krebsPowerClasses) {
-        return true;
-    }
     Object.keys(ICONS).forEach(function(power) {
         if(!Object.prototype.hasOwnProperty.call(Object.prototype, PREFIX + power)) {
             Object.defineProperty(Object.prototype, PREFIX + power, {value: ICONS[power], configurable: true});
         }
     });
-    var applyState = renderer.applyState;
-    Object.defineProperty(renderer, 'krebsPowerClasses', {value: true});
+    // The client keeps its page when it connects again, maybe to a server with a newer version of this mod: this run's
+    // wrapper takes the place of one an earlier run left, around the renderer's own applyState. Over any other wrapper it
+    // goes on top, which does no harm, since nothing below changes what has been changed once.
+    var applyState = renderer.applyState.krebsPowerClassesOriginal || renderer.applyState;
+    Object.defineProperty(renderer, 'krebsPowerClasses', {value: true, configurable: true});
     renderer.applyState = function(state) {
         var objects = state && state.objects;
         var list = Array.isArray(objects) ? objects : objects ? Object.keys(objects).map(function(id) { return objects[id]; }) : [];
         for(var i = 0; i < list.length; i++) {
+            // the client hands the renderer a deep copy of its objects each tick, so this changes none of its own
             var log = list[i] && list[i].actionLog, used = log && log.classPower;
             if(used && ICONS[used.id] && !log.power) {
-                // the client hands the renderer a copy of its objects, so this changes none of its own
                 log.power = {id: PREFIX + used.id, x: used.x, y: used.y};
+            }
+            // The red flare the renderer pulses over anything under a power's effect (_all.metadata.js, hasEffect) looks
+            // the effect's power up in its POWER_INFO, which holds the Operator's alone; under the names above, it finds
+            // these too. Nothing else in the renderer reads an effect's power but the factory, for PWR_OPERATE_FACTORY.
+            var effects = list[i] && list[i].effects;
+            if(effects && typeof effects == 'object') {
+                Object.keys(effects).forEach(function(k) {
+                    var e = effects[k];
+                    if(e && ICONS[e.power]) {
+                        e.power = PREFIX + e.power;
+                    }
+                });
             }
         }
         return applyState.apply(this, arguments);
     };
+    renderer.applyState.krebsPowerClassesOriginal = applyState;
     return true;
 }
 

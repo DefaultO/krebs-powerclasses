@@ -93,16 +93,21 @@ The planner describes each power in a sentence. Where that left a choice, the mo
 ## What the client shows
 
 The room view draws Commanders and Executors with the renderer's own sprites, at the renderer's own sizes. Each power
-shows the way an Operator's does: its icon where it lands, and in the side panel under Powers, with its level ring and
-cooldown bar, and under Effects while it lasts. 18 of the icons are the client's own, which it ships for these classes; the
-other 7 (Mass Heal, Foreman, Resurrect, Dash, Regenerate, Harvest Deposit, Nuke) are drawn for this mod in the same style,
-in `icons/`.
+shows the way an Operator's does: a red beam from the power creep and the power's icon where it lands, a red flare
+pulsing over whatever its effect is on for as long as it lasts (Defend, Disable, Foreman, Sight, Berserk, Reflect,
+Reinforce), and in the side panel under Powers, with its level ring and cooldown bar, and under Effects while it lasts.
+The renderer draws nothing more for any power: github.com/screeps/renderer has no other logic for power uses. 18 of the
+icons are the client's own, which it ships for these classes; the other 7 (Mass Heal, Foreman, Resurrect, Dash,
+Regenerate, Harvest Deposit, Nuke) are drawn for this mod in the same style, in `icons/`.
 
 `client.js` does this inside the client, which runs it each time it connects (Krebs's `Registry::client_js`):
 
 * The renderer only knows the Operator's powers, and an id it does not know stops it from drawing the room, so the server
   logs the new powers as `actionLog.classPower`. Just before the renderer reads a tick, client.js turns each back into
   `actionLog.power`, under an id that finds the icon.
+* The flare goes over an object with an effect whose power the renderer's `POWER_INFO` has, which again is the Operator's
+  alone. In the same step client.js gives the new powers' effects the ids that find the icons, which that lookup finds
+  too. The renderer gets a copy of the client's objects, so the client's own are left as they are.
 * The side panel names a power by its `PWR_*` constant and loads `PWR_<name>.svg` from the client's files. client.js adds
   the new powers to the client's constants (`PWR_*`, `POWER_INFO`, `POWER_CLASS`), and points the panel at the client's
   Commander and Executor icons, or this mod's.
