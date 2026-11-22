@@ -59,7 +59,7 @@ None of these powers use ops. The room needs its power enabled, as for an Operat
 | `PWR_HARVEST_ENERGY` | 33 | 0 2 7 14 22 | Harvests 200 to 1000 energy from a source. | 20 | 1 |
 | `PWR_HARVEST_MINERAL` | 34 | 0 2 7 14 22 | Harvests 200 to 1000 from a mineral with an extractor. | 40 | 1 |
 | `PWR_HARVEST_DEPOSIT` | 35 | 0 2 7 14 22 | Harvests 200 to 1000 from a deposit. | 40 | 1 |
-| `PWR_REMOTE_TRANSFER` | 36 | 0 2 7 14 22 | Transfers to any creep, power creep or structure. | 10 | 5/10/15/20/30 |
+| `PWR_REMOTE_TRANSFER` | 36 | 0 2 7 14 22 | Transfers to any creep or structure, not to a power creep. | 10 | 5/10/15/20/30 |
 | `PWR_MASS_REPAIR` | 37 | 0 2 7 14 22 | Repairs every structure within 10 for 1000 to 5000 hits in all, shared out, for up to 10 to 50 energy. | none | 10 around |
 | `PWR_PUNCH` | 38 | 0 2 7 14 22 | 300 to 1500 damage to a creep, power creep or structure. | none | 1 |
 | `PWR_DEMOLISH` | 39 | 0 2 7 14 22 | 5000 to 25000 damage to a rampart or wall. | 10 | 10 |
@@ -80,7 +80,10 @@ The planner describes each power in a sentence. Where that left a choice, the mo
   its own intents run, so the game works the result out as it always does, boosts and limits included. FOREMAN leaves a
   creep that also dismantles alone that tick.
 * SIGHT runs an action that was one square too far from one square closer.
-* REFLECT: the power creep takes half and the attacker takes half. Only creeps and power creeps get hit back.
+* REFLECT: the power creep takes half and the attacker takes half, even inside ramparts. Only creeps get hit back: a
+  power creep's hit lands whole. Screeps' descriptions of the two classes (on its Discord, December 2025) say "creep" for
+  a creep and "power creep" for a power creep, and its developer said so in the same thread; the same goes for REMOTE
+  TRANSFER's targets.
 * RESURRECT takes one of your own creep's tombstones from which nothing was taken. The creep comes back where it fell, with
   the time it had left, full hits and no boosts, holding what the tombstone held up to its capacity, the rest dropped. Its
   name must be free. A tombstone records what it held when the room first sees it, before anyone can withdraw from it.
@@ -96,15 +99,20 @@ The room view draws Commanders and Executors with the renderer's own sprites, at
 shows the way an Operator's does: a red beam from the power creep and the power's icon where it lands, a red flare
 pulsing over whatever its effect is on for as long as it lasts (Defend, Disable, Foreman, Sight, Berserk, Reflect,
 Reinforce), and in the side panel under Powers, with its level ring and cooldown bar, and under Effects while it lasts.
-The renderer draws nothing more for any power: github.com/screeps/renderer has no other logic for power uses. 18 of the
-icons are the client's own, which it ships for these classes; the other 7 (Mass Heal, Foreman, Resurrect, Dash,
-Regenerate, Harvest Deposit, Nuke) are drawn for this mod in the same style, in `icons/`.
+The renderer draws nothing more for any power: github.com/screeps/renderer has no other logic for power uses. As for an
+Operator, a power is drawn once, on the tick it is used, at the square it struck then: its target's, or the power
+creep's own for a power on itself, which has no beam. So Dash's icon is on the square it dashes from and Summon's beam
+goes to where the creep stood, which the renderer then slides over to the Commander. 18 of the icons are the client's
+own, which it ships for these classes; the other 7 (Mass Heal, Foreman, Resurrect, Dash, Regenerate, Harvest Deposit,
+Nuke) are drawn for this mod in the same style, in `icons/`.
 
 `client.js` does this inside the client, which runs it each time it connects (Krebs's `Registry::client_js`):
 
 * The renderer only knows the Operator's powers, and an id it does not know stops it from drawing the room, so the server
   logs the new powers as `actionLog.classPower`. Just before the renderer reads a tick, client.js turns each back into
-  `actionLog.power`, under an id that finds the icon.
+  `actionLog.power`, under an id that finds the icon. The client gets room objects as diffs, in which a key that went
+  away arrives as nothing, so on the tick after a use the server sets `classPower` to null, as vanilla keeps `power` at
+  null; otherwise the client would keep the old entry and draw the power again every tick.
 * The flare goes over an object with an effect whose power the renderer's `POWER_INFO` has, which again is the Operator's
   alone. In the same step client.js gives the new powers' effects the ids that find the icons, which that lookup finds
   too. The renderer gets a copy of the client's objects, so the client's own are left as they are.

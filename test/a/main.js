@@ -273,6 +273,7 @@ const executor = [
     [
         () => {
             eq('remote transfer out of range', exe().usePower(PWR_REMOTE_TRANSFER, cr('dist'), RESOURCE_ENERGY, 1), ERR_NOT_IN_RANGE);
+            eq('remote transfer to a power creep', exe().usePower(PWR_REMOTE_TRANSFER, pc('Cmd'), RESOURCE_ENERGY, 1), ERR_INVALID_TARGET);
             eq('remote transfer', exe().usePower(PWR_REMOTE_TRANSFER, cr('rc'), RESOURCE_ENERGY, 100), OK);
             eq('remote transfer of nothing known', exe().usePower(PWR_REMOTE_TRANSFER, cr('rc'), 'nope', 1), ERR_INVALID_ARGS);
         },

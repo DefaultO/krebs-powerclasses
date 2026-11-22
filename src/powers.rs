@@ -40,12 +40,15 @@ pub fn ready(object: &O, power: u32, scope: &RoomScope) -> Option<f64> {
     Some(level.min(5.0).floor())
 }
 
-/// After a power worked: its cooldown, the event, and the power creep's action log (`at` is where it struck).
+/// After a power worked: its cooldown, the event, and the power creep's action log.
 ///
 /// The action log entry is `classPower`, not vanilla's `power`: the game client's renderer looks `power.id` up in a
 /// table of the Operator's icons and stops drawing the room on an id it does not know (powerInfluence.js,
-/// `Assets.get(undefined)`), and it leaves keys it does not know alone.
-pub fn used(object: &O, power: u32, level: f64, target: Option<V>, at: &O, scope: &mut RoomScope) -> Result<(), Crash> {
+/// `Assets.get(undefined)`), and it leaves keys it does not know alone. `at` is the square the power struck when it was
+/// used, before it moved anything, as vanilla logs an Operator's power: the target's, or the power creep's own for a
+/// power on itself. The renderer draws its beam from where the power creep is at the tick's start to that square, so a
+/// power on itself has none, DASH included.
+pub fn used(object: &O, power: u32, level: f64, target: Option<V>, at: (V, V), scope: &mut RoomScope) -> Result<(), Crash> {
     let p = table::power(power).expect("a power of this mod");
     let cooldown = p.cooldown.at(level as usize - 1) as f64;
     let entry = O::new();
@@ -55,7 +58,7 @@ pub fn used(object: &O, power: u32, level: f64, target: Option<V>, at: &O, scope
     update(scope, object, obj(vec![("powers", V::Obj(powers))]))?;
     event(scope, EVENT_POWER, object, obj(vec![("power", n(power as f64)), ("targetId", target.unwrap_or(V::Undef))]));
     if let V::Obj(l) = object.get(atom!("actionLog")) {
-        l.set(Atom::intern("classPower"), obj(vec![("id", n(power as f64)), ("x", at.get(atom!("x"))), ("y", at.get(atom!("y")))]));
+        l.set(Atom::intern("classPower"), obj(vec![("id", n(power as f64)), ("x", at.0), ("y", at.1)]));
     }
     Ok(())
 }
@@ -92,6 +95,9 @@ pub fn use_power(object: &O, intent: &V, scope: &mut RoomScope) -> Result<(), Cr
     let t = target.as_ref();
     let effect = p.effect.map_or(0.0, |e| e[lvl]);
     let game_time = scope.game_time as f64;
+    // where the power strikes, before it moves anything
+    let struck = t.unwrap_or(object);
+    let at = (struck.get(atom!("x")), struck.get(atom!("y")));
 
     let done = match power {
         PWR_ENCOURAGE => encourage(t.unwrap(), scope)?,
@@ -121,7 +127,7 @@ pub fn use_power(object: &O, intent: &V, scope: &mut RoomScope) -> Result<(), Cr
     };
     if done {
         let target_id = t.map(|t| t.get(atom!("_id")));
-        used(object, power, level, target_id, t.unwrap_or(object), scope)?;
+        used(object, power, level, target_id, at, scope)?;
     }
     Ok(())
 }
@@ -434,7 +440,8 @@ fn harvest_deposit(object: &O, t: &O, effect: f64, scope: &mut RoomScope) -> Res
 
 /// creeps/transfer.js as if the power creep stood by the target, so every rule of what fits where is the game's.
 fn remote_transfer(object: &O, t: &O, resource: &str, amount: f64, scope: &mut RoomScope) -> Result<bool, Crash> {
-    if resource.is_empty() || !(amount > 0.0) || t.same(object) {
+    // "to any creep or structure", and a creep there is not a power creep (Screeps' description of the Executor)
+    if resource.is_empty() || !(amount > 0.0) || is(t, "powerCreep") {
         return Ok(false);
     }
     let rt = Atom::intern(resource);

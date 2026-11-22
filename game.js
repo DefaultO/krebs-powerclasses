@@ -159,7 +159,8 @@ check[C.PWR_KILL] = function(pc, t) {
 
 // (pc, target, resourceType, amount) -> error code, or the amount to send
 function remoteTransfer(pc, t, resourceType, amount) {
-    if(!t || t === pc || !t.store || !(t instanceof globals.Creep || t instanceof globals.PowerCreep || t instanceof globals.Structure)) {
+    // any creep or structure, and a creep there is not a power creep (Screeps' description of the Executor)
+    if(!t || !t.store || !(t instanceof globals.Creep || t instanceof globals.Structure)) {
         return C.ERR_INVALID_TARGET;
     }
     if(!_.contains(C.RESOURCES_ALL, resourceType)) {

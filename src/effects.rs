@@ -233,7 +233,8 @@ fn dash(object: &O, intents: &V, scope: &mut RoomScope) -> Result<(), Crash> {
     let (x, y) = (num(object, atom!("x")), num(object, atom!("y")));
     let (room, time) = (scope.room, scope.game_time);
     PENDING.with(|p| p.borrow_mut().dashes.push((room, time, object.clone(), dx, dy, x, y)));
-    crate::powers::used(object, PWR_DASH, level, None, object, scope)
+    let at = (object.get(atom!("x")), object.get(atom!("y")));
+    crate::powers::used(object, PWR_DASH, level, None, at, scope)
 }
 
 /// `room_end`: the dashes of this room.
@@ -368,8 +369,9 @@ fn taken_by_creep(o: &O, game_time: f64, scope: &mut RoomScope) -> Result<(), Cr
     Ok(())
 }
 
-/// REFLECT sends half of each hit back to the creep or power creep that dealt it, past any rampart, and REINFORCE
-/// takes the rest away.
+/// REFLECT sends half of each hit back to the creep that dealt it, past any rampart, and REINFORCE takes the rest away.
+/// A power creep that hits it takes nothing back, and its hit lands whole: Screeps' description reflects "back to an
+/// attacker creep", and a creep there is not a power creep.
 fn taken_by_power_creep(o: &O, game_time: f64, scope: &mut RoomScope) -> Result<(), Crash> {
     if let Some((e, _)) = active(o, PWR_REFLECT, game_time) {
         let share = {
@@ -385,7 +387,7 @@ fn taken_by_power_creep(o: &O, game_time: f64, scope: &mut RoomScope) -> Result<
             .collect();
         for (attacker, damage) in hits {
             let Some(a) = scope.room_objects.get(&to_js_string(&attacker)) else { continue };
-            if !is(&a, "creep") && !is(&a, "powerCreep") || a.same(o) {
+            if !is(&a, "creep") {
                 continue;
             }
             let back = (damage * share).floor();
@@ -404,9 +406,22 @@ fn taken_by_power_creep(o: &O, game_time: f64, scope: &mut RoomScope) -> Result<
     Ok(())
 }
 
-/// `process_object`: what RESURRECT needs to know of a tombstone, and the nukes of power creeps that are gone.
+/// `process_object`: a power creep's `classPower` of last tick cleared, what RESURRECT needs to know of a tombstone, and
+/// the nukes of power creeps that are gone.
 pub fn prescan(o: &O, scope: &mut RoomScope) {
-    if is(o, "tombstone") {
+    if is(o, "powerCreep") {
+        // The engine has just given the power creep a fresh action log, vanilla's keys at null (processor.js), without
+        // `classPower`. The game client gets room objects as diffs, and a nested key that went away reaches it as
+        // nothing at all (common's getDiff), so the client would keep last tick's `classPower` and draw that power again
+        // every tick. Vanilla's `power` stays in the log at null; `classPower` does the same on the tick after a use.
+        let used_last = match o.get(atom!("_actionLog")) {
+            V::Obj(last) => truthy(&last.get(Atom::intern("classPower"))),
+            _ => false,
+        };
+        if let (true, V::Obj(log)) = (used_last, o.get(atom!("actionLog"))) {
+            log.set(Atom::intern("classPower"), V::Null);
+        }
+    } else if is(o, "tombstone") {
         // a new tombstone is seen here before anything can be withdrawn from it
         if truthy(&o.get(atom!("creepId"))) && !o.has(Atom::intern(STORE_AT_DEATH)) {
             let store = o.get(atom!("store"));
